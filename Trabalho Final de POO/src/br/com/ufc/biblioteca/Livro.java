@@ -1,4 +1,4 @@
-package biblioteca;
+package br.com.ufc.biblioteca;
 
 public class Livro {
 	private String nome;
@@ -6,7 +6,7 @@ public class Livro {
 	private int isbn;
 	private String descricao;
 	
-	
+
 	
 	
 }
