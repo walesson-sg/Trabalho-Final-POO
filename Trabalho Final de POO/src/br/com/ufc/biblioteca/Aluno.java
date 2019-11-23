@@ -47,8 +47,16 @@ public class Aluno {
 	
 	
 //METODO SOLICITAR EMPRESTIMO DE LIVRO
-
+	public void solicitarEmprestimo() {
+		
+	}
+	
+	
 //METODO DEVOLVER LIVRO DO EMPRESTIMO
+	public void devolucao() {
+		
+	}
+	
 	
 //METODO RENOVAR EMPRESTIMO
 	
