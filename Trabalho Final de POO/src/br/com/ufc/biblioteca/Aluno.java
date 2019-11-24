@@ -1,6 +1,6 @@
 package br.com.ufc.biblioteca;
 
-public class Aluno {
+public class Aluno extends Biblioteca {
 	private String nome;
 	private String curso;
 	private String dataNascimento;
@@ -40,29 +40,5 @@ public class Aluno {
 	}
 	
 	
-//METODO VISUALIZAR LIVROS DISPONÍVEIS
-	public void visualizarLivro() {
-		
-	}
-	
-	
-//METODO SOLICITAR EMPRESTIMO DE LIVRO
-	public void solicitarEmprestimo() {
-		
-	}
-	
-	
-//METODO DEVOLVER LIVRO DO EMPRESTIMO
-	public void devolucao() {
-		
-	}
-	
-	
-//METODO RENOVAR EMPRESTIMO
-	
-//METODO PESQUISAR LIVROS
-	
-//METODO VIZUALIZAR LIVROS EMPRESTADOS
-	
-	
+
 }
