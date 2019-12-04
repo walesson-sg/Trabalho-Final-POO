@@ -9,6 +9,7 @@ public class Biblioteca {
 	static ArrayList<Livro> livros = new ArrayList<Livro>();
 	static ArrayList<Livro> emprestimo = new ArrayList<Livro>(1);
 	static ArrayList<Aluno> alunos = new ArrayList<Aluno>();
+	ArrayList<String> emprestimos = new ArrayList<String>();
 
 	Scanner ler = new Scanner(System.in);
 

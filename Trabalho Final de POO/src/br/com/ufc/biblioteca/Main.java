@@ -9,14 +9,14 @@ public class Main {
 		Aluno aluno = new Aluno();	
 		Bibliotecaria bibliotecaria = new Bibliotecaria();
 		biblioteca.livrosPadrao();
-		biblioteca.umAluno();
-		String aux;
+		biblioteca.umAluno();//a1, 12345
+
 		boolean sair = false;
 		boolean voltar = false;
 	
 		while(sair == false) {	
-			System.out.println("Aluno ou Bibliotecária.");
-		aux = ler.nextLine();
+		System.out.println("Aluno ou Bibliotecária?");
+		String aux = ler.nextLine();
 
 		do {
 //USUÁRIO ALUNO	
@@ -43,9 +43,7 @@ public class Main {
 						//FALTA AQUI
 							break;
 						case 5:
-							System.out.println("Qual livro você está procurando? ");
-							aux = ler.nextLine();
-							aluno.pesquisarLivro(aux);
+							aluno.pesquisarLivro();
 							break;							
 						case 6:
 							aluno.vizualizarLivrosEmprestado();
@@ -56,11 +54,11 @@ public class Main {
 							break;
 						
 						default:
-							System.out.println("Opção invalida."); break;
+							System.out.println("Opção invalida.\n"); break;
 				}			
 			} while(sair == true);
 		}
-		}//FIM IF - ALUNO
+		}//FIM - ALUNO
 		
 //USUÁRIO BIBLIOTECARIA
 		if(aux.contains("Bibliotecaria") || aux.contains("bibliotecaria")) {
@@ -96,7 +94,7 @@ public class Main {
 							System.out.println("Opção invalida."); break;
 				}			
 			} while(sair == true);
-			}//FIM IF - BIBLIOTECARIA
+			}//FIM - BIBLIOTECARIA
 		}while(voltar == false);
 		}
 		}//FIM MAIN

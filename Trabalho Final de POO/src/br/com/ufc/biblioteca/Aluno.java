@@ -61,12 +61,12 @@ public class Aluno extends Biblioteca {
 			System.out.println("Digite o nome do livro...");
 			nome = ler.nextLine();	
 			for(int i = 0 ; i < livros.size(); i++) {
-				if(livros.get(i).getNome().contains(nome)) {						
+					if(livros.get(i).getNome().contains(nome)) {	
+						emprestimos.add(livros.get(i).getNome()+ " alugado em " + dia);
 						emprestimo.add(livros.get(i));	
 						livros.remove(i);
-						System.out.println("Emprestimo realizado com sucesso em " + dia);
-				}
-				
+						System.out.println("Emprestimo realizado com sucesso em " + emprestimos + " - (" + emprestimos.size() + "/4)");
+					}
 			}
 		}
 			
@@ -90,11 +90,18 @@ public class Aluno extends Biblioteca {
 		}
 				
 	//METODO PESQUISAR LIVROS
-		public void pesquisarLivro(String nome) {
+		public void pesquisarLivro() {
+			boolean livroEncontrado = false;
+			System.out.println("Qual livro você está procurando? ");
+			String nome = ler.nextLine();
 				for(int i = 0; i < livros.size(); i++) {
 					if(livros.get(i).getNome().contains(nome)) {
-					System.out.println("Título: " + livros.get(i).getNome() + "\nAutor: " + livros.get(i).getAutor() + "\n" + livros.get(i).getDescricao());
-					} else System.out.println("Livro não encontrado.");
+					System.out.println("\n|X| Título: " + livros.get(i).getNome() + "\n|X| Autor: " + livros.get(i).getAutor() + "\n|X| " + livros.get(i).getDescricao()+ "\n");
+					livroEncontrado = true;
+					}
+				}
+				if(livroEncontrado == false) {
+					System.out.println("Livro não encontrado.");
 				}
 		}
 		

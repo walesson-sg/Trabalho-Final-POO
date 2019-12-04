@@ -32,22 +32,22 @@ public class Bibliotecaria extends Biblioteca{
 	
 	//METODO CADASTRAR ALUNO	
 	public void cadastrarAluno() {
-		System.out.println("Digite o nome do Aluno:");
+		System.out.print("Digite o nome do Aluno: ");
 		nome = ler.nextLine();
 		
-		System.out.println("Digite o curso do Aluno:");
+		System.out.print("Digite o curso do Aluno: ");
 		curso = ler.nextLine();		
 		
-		System.out.println("Digite a data de nascimento do Aluno:");
+		System.out.print("Digite a data de nascimento do Aluno ");
 		dataNascimento = ler.nextLine();	
 		
-		System.out.println("Digite o CPF do Aluno:");
+		System.out.print("Digite o CPF do Aluno: ");
 		cpf = ler.nextLine();
 		
-		System.out.println("Digite a Matricula do Aluno:");
+		System.out.print("Digite a Matricula do Aluno: ");
 		matricula = ler.nextLine();	
 		
-		System.out.println("Digite o número do telefone do Aluno:");
+		System.out.print("Digite o número do telefone do Aluno: ");
 		telefone = ler.nextInt();
 		
 		Aluno aluno = new Aluno(nome, curso, dataNascimento, cpf, matricula, telefone);
@@ -57,21 +57,34 @@ public class Bibliotecaria extends Biblioteca{
 	
 	//METODO REMOVER ALUNO
 	public void removerAluno() {
+		boolean alunoExiste = false;
 		System.out.println("Digite a matricula do aluno: ");
 		matricula = ler.nextLine();	
 		for(int i = 0; i < alunos.size(); i++) {
 			if(alunos.get(i).getMatricula().contains(matricula)) {
-				alunos.remove(i);
-				System.out.println("Aluno removido do sistema.");
-			} else System.out.println("Aluno não encontrado.");
+				System.out.println("Excluir o Aluno " + alunos.get(i).getNome() + "?");
+				String e = ler.nextLine();
+					if(e.contains("Sim") || e.contains("sim")) {
+						alunos.remove(i);
+						System.out.println("Aluno removido do sistema.");
+						alunoExiste = true;
+					}
+					if(e.contains("Nao") || e.contains("nao")) {
+						alunoExiste = true;
+						break;
+					}
+			}
+		} 
+		if(alunoExiste == false) {
+			System.out.println("Aluno não encontrado.");
 		}
 	}
-
+	
 	//METODO VER ALUNOS COM PENDECIAS
 	public void alunosPendentes() {
 		for(int i = 0; i < emprestimo.size(); i++) {
 				if(emprestimo.get(i) != null) {
-					System.out.println(emprestimo.get(i).getNome() + "\n" + "          -> "+ emprestimo.get(i).getNome() + "\n");
+					System.out.println(alunos.get(i).getNome() + "\n" + "  -> "+ emprestimo.get(i).getNome() + "\n");
 				}
 			}
 		}

@@ -1,3 +1,4 @@
+//NÃO IMPLEMENTADA
 package br.com.ufc.biblioteca;
 
 import java.util.ArrayList;
@@ -5,7 +6,7 @@ import java.util.ArrayList;
 public class Emprestimo {
 	private String nome;
 	private String dataEmprestimo;
-	ArrayList<Emprestimo> emprestimo = new ArrayList<Emprestimo>();
+	ArrayList<Livro> emprestimo = new ArrayList<Livro>();
 	
 	public Emprestimo() {}
 	public void emprestimoL(String nome, String dataEmprestimo) {
