@@ -1,6 +1,10 @@
 package br.com.ufc.biblioteca;
 
-public class Bibliotecaria extends Biblioteca{
+import java.util.ArrayList;
+
+
+public class Bibliotecaria extends Biblioteca
+{
 	private String nome;
 	private String autor; 
 	private String descricao;
@@ -10,10 +14,13 @@ public class Bibliotecaria extends Biblioteca{
 	private String matricula ;
 	private int telefone;
 	private int isbn;
+	public static String nomeLogin="";
 
 	//METODO VER ALUNOS CADASTRADOS
-	public void alunosCadastrados() {
-		for(int i = 0; i < alunos.size(); i++) {
+	public void alunosCadastrados() 
+	{
+		for(int i = 0; i < alunos.size(); i++) 
+		{
 			System.out.println("Nome: " + alunos.get(i).getNome() + "\n" + "Matrícula: " + alunos.get(i).getMatricula());
 		}
 	}
@@ -22,16 +29,42 @@ public class Bibliotecaria extends Biblioteca{
 	public void excluirLivro() {
 		System.out.println("Digite a ISBN do Livro: ");
 		isbn = ler.nextInt();
-		for(int i = 0; i < livros.size(); i++) {
-			if(livros.get(i).getIsbn() == isbn) {
+		for(int i = 0; i < livros.size(); i++) 
+		{
+			if(livros.get(i).getIsbn() == isbn) 
+			{
 				livros.remove(i);
 				System.out.println("Livro removido do sistema com sucesso.");
-			} else System.out.println("Livro não encontrado.");
+				
+				alunosEmprestimo.forEach((aluno,emprestimos) ->{
+					Emprestimo e = null;
+					for(Emprestimo empr: emprestimos) {
+						if(empr.getLi().getIsbn()==isbn) {
+							e = empr;	
+						}
+					}
+					if(e != null) {
+						emprestimos.remove(e);
+					}
+				});
+				Emprestimo e = null;
+				for(Emprestimo empr: emprestimos) {
+					if(empr.getLi().getIsbn()==isbn) {
+						e = empr;				
+					}
+				}
+				if(e != null) {
+					emprestimos.remove(e);
+				}
+				return;
+			}
 		}
+		System.out.println("Livro não encontrado.");
 	}
 	
 	//METODO CADASTRAR ALUNO	
-	public void cadastrarAluno() {
+	public void cadastrarAluno() 
+	{
 		System.out.print("Digite o nome do Aluno: ");
 		nome = ler.nextLine();
 		
@@ -52,24 +85,31 @@ public class Bibliotecaria extends Biblioteca{
 		
 		Aluno aluno = new Aluno(nome, curso, dataNascimento, cpf, matricula, telefone);
 		alunos.add(aluno);
+		alunosEmprestimo.put(aluno, new ArrayList<Emprestimo>());
 		System.out.println("Aluno cadastrado com sucesso.");
 	}
 	
 	//METODO REMOVER ALUNO
-	public void removerAluno() {
+	public void removerAluno() 
+	{
 		boolean alunoExiste = false;
 		System.out.println("Digite a matricula do aluno: ");
 		matricula = ler.nextLine();	
-		for(int i = 0; i < alunos.size(); i++) {
-			if(alunos.get(i).getMatricula().contains(matricula)) {
+		for(int i = 0; i < alunos.size(); i++) 
+		{
+			if(alunos.get(i).getMatricula().contains(matricula)) 
+			{
 				System.out.println("Excluir o Aluno " + alunos.get(i).getNome() + "?");
 				String e = ler.nextLine();
-					if(e.contains("Sim") || e.contains("sim")) {
+					if(e.toLowerCase().contains("Sim".toLowerCase())) 
+					{
+						alunosEmprestimo.remove(alunos.get(i));
 						alunos.remove(i);
 						System.out.println("Aluno removido do sistema.");
 						alunoExiste = true;
 					}
-					if(e.contains("Nao") || e.contains("nao")) {
+					if(e.toLowerCase().contains("Nao".toLowerCase())) 
+					{
 						alunoExiste = true;
 						break;
 					}
@@ -81,16 +121,17 @@ public class Bibliotecaria extends Biblioteca{
 	}
 	
 	//METODO VER ALUNOS COM PENDECIAS
-	public void alunosPendentes() {
-		for(int i = 0; i < emprestimo.size(); i++) {
-				if(emprestimo.get(i) != null) {
-					System.out.println(alunos.get(i).getNome() + "\n" + "  -> "+ emprestimo.get(i).getNome() + "\n");
-				}
-			}
+	public void alunosPendentes() 
+	{
+		for(Emprestimo emprestimo: emprestimos) {
+			System.out.println(emprestimo.getAluno().getNome() + "\n     Matricula:  "  + emprestimo.getAluno().getMatricula() + "\n     " + emprestimo.getDataEmprestimo() + " - " + emprestimo.getLi().getNome());
+			System.out.println("     Devolução: " + emprestimo.getDataD());
 		}
+	}
 
 	//METODO CADASTRAR LIVRO
-	public void cadastrarLivro() {
+	public void cadastrarLivro() 
+	{
 		System.out.println("Digite o nome do Livro ");
 		nome = ler.nextLine();
 		System.out.println("Digite o nome do Autor do Livro: ");

@@ -3,21 +3,42 @@ package br.com.ufc.biblioteca;
 
 import java.util.ArrayList;
 
-public class Emprestimo {
-	private String nome;
+public class Emprestimo
+{
+	private Aluno aluno;
 	private String dataEmprestimo;
-	ArrayList<Livro> emprestimo = new ArrayList<Livro>();
-	
+	private Livro li;	
+	private String dataD;
+	private boolean renovado=false;
+	static private ArrayList<String> emprestimo1 = new ArrayList<String>();
+
 	public Emprestimo() {}
-	public void emprestimoL(String nome, String dataEmprestimo) {
-		this.dataEmprestimo = dataEmprestimo;
-		this.nome = nome;
-	}
-	
-	
 	public String getDataEmprestimo() {	return dataEmprestimo;}
 	public void setDataEmprestimo(String dataEmprestimo) {this.dataEmprestimo = dataEmprestimo;}
-	public String getNome() {return nome;}
-	public void setNome(String aluno) {this.nome = nome;}
+
+	public Livro getLi() {
+		return li;
+	}
+	public void setLi(Livro li) {
+		this.li = li;
+	}
+	public Aluno getAluno() {
+		return aluno;
+	}
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+	public String getDataD() {
+		return dataD;
+	}
+	public void setDataD(String dataD) {
+		this.dataD = dataD;
+	}
+	public boolean isRenovado() {
+		return renovado;
+	}
+	public void setRenovado(boolean renovado) {
+		this.renovado = renovado;
+	}
 
 }

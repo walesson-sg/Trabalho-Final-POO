@@ -2,8 +2,10 @@ package br.com.ufc.biblioteca;
 
 import java.util.Scanner;
 
-public class Main {
-	public static void main(String[] args) {
+public class Main 
+{
+	public static void main(String[] args) 
+	{
 		Scanner ler = new Scanner(System.in);
 		Biblioteca biblioteca = new Biblioteca();
 		Aluno aluno = new Aluno();	
@@ -14,15 +16,18 @@ public class Main {
 		boolean sair = false;
 		boolean voltar = false;
 	
-		while(sair == false) {	
+		while(sair == false) 
+		{	
 		System.out.println("Aluno ou Bibliotecária?");
 		String aux = ler.nextLine();
 
 		do {
 //USUÁRIO ALUNO	
-		if(aux.contains("Aluno") || aux.contains("aluno")) {
+		if(aux.contains("Aluno") || aux.contains("aluno")) 
+		{
 			
-			if(biblioteca.loginAluno() == true) {
+			if(biblioteca.loginAluno() == true) 
+			{
 				
 				do {sair = true;	
 				biblioteca.menuAluno();
@@ -40,7 +45,8 @@ public class Main {
 							aluno.devolucao();
 							break;							
 						case 4:
-						//FALTA AQUI
+							aluno.renovarEmprestimo();
+							//TODO
 							break;
 						case 5:
 							aluno.pesquisarLivro();
@@ -61,7 +67,8 @@ public class Main {
 		}//FIM - ALUNO
 		
 //USUÁRIO BIBLIOTECARIA
-		if(aux.contains("Bibliotecaria") || aux.contains("bibliotecaria")) {
+		if(aux.contains("Bibliotecaria") || aux.contains("bibliotecaria")) 
+		{
 			do {sair = true;				
 				biblioteca.menuBibliotecaria();
 				int opcao = ler.nextInt();
